@@ -1,0 +1,34 @@
+# LangBot 配置示例 — 飞书票夹（请复制为实际 config 片段并填入密钥）
+
+dify:
+  api_base: "https://your-dify-host/v1"
+  api_key: "app-xxxxxxxx"
+  workflows:
+    parse_ticket: "parse-workflow-uuid"
+    confirm_ticket: "confirm-workflow-uuid"
+
+ticket_api:
+  base_url: "http://127.0.0.1:8000"
+  api_key: "dev-local-key"
+
+feishu:
+  app_id: "cli_xxxxxxxx"
+  app_secret: "xxxxxxxx"
+  verification_token: "xxxxxxxx"
+  encrypt_key: ""
+
+session:
+  # 等待用户确认入库的超时（秒）
+  confirm_ttl: 600
+
+triggers:
+  keywords: ["票夹", "入库", "电影票"]
+  on_image: true
+
+messages:
+  welcome: |
+    中国电影资料馆电子票夹。请发送电子票截图或纸质票照片。
+    也可先发文字：电子 / 纸质，再发图片。
+  parse_failed: "识别失败，请换一张更清晰的图片重试。"
+  confirm_success: "已入票夹：{summary}"
+  duplicate_hint: "（提示：可能与已有记录重复）"

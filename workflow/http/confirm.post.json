@@ -1,0 +1,13 @@
+{
+  "description": "ConfirmTicket 节点：POST /api/tickets/confirm",
+  "method": "POST",
+  "url": "{{TICKET_API_BASE}}/api/tickets/confirm",
+  "headers": {
+    "Content-Type": "application/json",
+    "X-API-Key": "{{TICKET_API_KEY}}"
+  },
+  "body": {
+    "draft_id": "{{draft_id}}",
+    "corrected_json": "{{corrected_json_optional}}"
+  }
+}

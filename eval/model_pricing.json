@@ -1,0 +1,58 @@
+{
+  "as_of": "2026-05-18",
+  "currency": "CNY",
+  "usd_cny_rate": 7.2,
+  "input_label": "图片输入",
+  "output_label": "文本输出",
+  "note": "预估费用 = prompt_tokens×图片输入单价 + completion_tokens×文本输出单价（均按每百万 Token 计）。prompt_tokens 含图片编码与文本提示；completion_tokens 为模型文本输出。美元标价按 usd_cny_rate 折算为人民币。阶梯价按单次请求的 prompt_tokens 总量选档。",
+  "models": {
+    "qwen3.6-flash": {
+      "source": "用户整理的阿里云百炼标价（阶梯：按单次输入 Token 总量）",
+      "tiers": [
+        {"max_input_tokens": 262144, "input_per_1m_cny": 1.2, "output_per_1m_cny": 7.2, "label": "0–256K"},
+        {"max_input_tokens": null, "input_per_1m_cny": 4.8, "output_per_1m_cny": 28.8, "label": "256K–1M"}
+      ]
+    },
+    "qwen3-vl-plus": {
+      "source": "用户整理的阿里云百炼标价（阶梯：按单次输入 Token 总量）",
+      "tiers": [
+        {"max_input_tokens": 32768, "input_per_1m_cny": 1.0, "output_per_1m_cny": 10.0, "label": "0–32K"},
+        {"max_input_tokens": 131072, "input_per_1m_cny": 1.5, "output_per_1m_cny": 15.0, "label": "32K–128K"},
+        {"max_input_tokens": null, "input_per_1m_cny": 3.0, "output_per_1m_cny": 30.0, "label": "128K–256K"}
+      ]
+    },
+    "qwen3-vl-flash": {
+      "source": "用户整理的阿里云百炼标价（阶梯：按单次输入 Token 总量）",
+      "tiers": [
+        {"max_input_tokens": 32768, "input_per_1m_cny": 0.15, "output_per_1m_cny": 1.5, "label": "0–32K"},
+        {"max_input_tokens": 131072, "input_per_1m_cny": 0.3, "output_per_1m_cny": 3.0, "label": "32K–128K"},
+        {"max_input_tokens": null, "input_per_1m_cny": 0.6, "output_per_1m_cny": 6.0, "label": "128K–256K"}
+      ]
+    },
+    "gemini-2.5-flash": {
+      "source": "用户整理标价 $0.30/$2.50 per 1M（图文视输入统一价）× 7.2",
+      "input_per_1m_usd": 0.3,
+      "output_per_1m_usd": 2.5
+    },
+    "gpt-4.1-mini": {
+      "source": "用户整理标价 $0.40/$1.60 per 1M × 7.2",
+      "input_per_1m_usd": 0.4,
+      "output_per_1m_usd": 1.6
+    },
+    "claude-sonnet-4-5": {
+      "source": "用户整理标价 $3/$15 per 1M × 7.2",
+      "input_per_1m_usd": 3.0,
+      "output_per_1m_usd": 15.0
+    },
+    "glm-4.5v": {
+      "source": "用户整理标价 $0.60/$1.80 per 1M × 7.2",
+      "input_per_1m_usd": 0.6,
+      "output_per_1m_usd": 1.8
+    },
+    "pixtral-large-latest": {
+      "source": "未在用户价格表中，保留 Mistral 参考价 $2/$6 per 1M × 7.2",
+      "input_per_1m_usd": 2.0,
+      "output_per_1m_usd": 6.0
+    }
+  }
+}

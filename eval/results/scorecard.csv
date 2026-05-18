@@ -1,0 +1,11 @@
+case_id,ticket_type,core_fields_ok,electronic_extra_ok,paper_seat_ok,hallucination,parse_seconds,notes
+case_001_electronic,electronic,yes,yes,n/a,no,,auto-scored
+case_002_electronic,electronic,yes,yes,n/a,no,,auto-scored
+case_003_electronic,electronic,yes,yes,n/a,no,,auto-scored
+case_004_electronic,electronic,yes,yes,n/a,no,,auto-scored
+case_005_electronic,electronic,yes,yes,n/a,no,,auto-scored
+case_006_paper,paper,yes,n/a,yes,no,,auto-scored
+case_007_paper,paper,yes,n/a,yes,no,,auto-scored
+case_008_paper,paper,yes,n/a,yes,no,,auto-scored
+case_009_paper,paper,yes,n/a,yes,no,,auto-scored
+case_010_paper,paper,yes,n/a,yes,no,,auto-scored

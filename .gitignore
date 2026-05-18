@@ -1,0 +1,32 @@
+# OS / IDE
+.DS_Store
+.vscode/
+
+# Ticket images (PII)
+eval/cases/**/ticket.jpg
+eval/cases/**/ticket.png
+eval/cases/**/*.jpeg
+eval_pics/
+*.jpeg
+*.jpg
+*.png
+!eval/reports/**/*.png
+
+# Local / scratch
+github_current_project/
+annotate_reference.html
+eval_report.html
+vision_model_eval.jsonl
+vision_model_eval_summary.csv
+movie_ticket_reference*.json
+movie_frequency_by_month.png
+20260516-*.jpeg
+
+ticket-api/.env
+ticket-api/.venv/
+ticket-api/uploads/*
+!ticket-api/uploads/.gitkeep
+
+__pycache__/
+*.pyc
+.venv/

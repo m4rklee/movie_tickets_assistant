@@ -1,0 +1,63 @@
+openapi: 3.0.3
+info:
+  title: FilmArchive Ticket API
+  version: 0.1.0
+  description: Dify Tool / TicketQA 用只读接口
+servers:
+  - url: http://host.docker.internal:8000
+paths:
+  /api/tickets:
+    get:
+      operationId: listTickets
+      summary: 列出票夹记录
+      parameters:
+        - name: movie_title
+          in: query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 50
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            default: 0
+      responses:
+        "200":
+          description: OK
+  /api/tickets/{ticket_id}:
+    get:
+      operationId: getTicket
+      summary: 单条票详情
+      parameters:
+        - name: ticket_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+  /api/reports/summary:
+    get:
+      operationId: reportSummary
+      summary: 观看报表聚合
+      parameters:
+        - name: year
+          in: query
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+security:
+  - ApiKeyAuth: []

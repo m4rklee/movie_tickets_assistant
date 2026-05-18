@@ -1,0 +1,10 @@
+{
+  "ticket_type": "electronic",
+  "movie_title": "公民凯恩",
+  "show_date": "2026-04-20",
+  "show_time": "10:30",
+  "cinema_name": "中国电影资料馆",
+  "hall_name": "艺术影院",
+  "payment_status": "待支付",
+  "price": 35.0
+}

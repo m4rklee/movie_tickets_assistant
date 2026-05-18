@@ -1,0 +1,9 @@
+model,provider,images_in_reference,scored_images,api_failures,parse_failures,missing_images,core_field_accuracy,all_field_accuracy,extra_fill_count,total_prompt_tokens,total_completion_tokens,total_tokens,avg_tokens_per_call,total_elapsed_seconds,avg_elapsed_seconds,est_cost_cny_total,est_cost_cny_per_call,acc_movie_name,acc_ticket_date,acc_start_time,acc_end_time,acc_movie_duration,acc_price,acc_cinema_name,acc_cinema_address,acc_cinema_hall,acc_seat_row,acc_seat_col
+glm-4.5v,Z.ai,19,19,0,0,0,92.5%,91.2%,1,"119,225","7,994","127,219","6,696",231.3,12.18,¥0.6187,¥0.0326,63.2%,94.7%,100.0%,n/a,90.0%,100.0%,100.0%,55.6%,100.0%,94.7%,94.7%
+qwen3-vl-plus,Alibaba Bailian,19,19,0,0,0,91.7%,91.2%,16,"52,193","2,686","54,879","2,888",121.8,6.41,¥0.0791,¥0.0042,68.4%,89.5%,100.0%,n/a,90.0%,100.0%,100.0%,66.7%,94.7%,94.7%,94.7%
+qwen3.6-flash,Alibaba Bailian,19,19,0,0,0,91.7%,91.8%,0,"52,155","37,092","89,247","4,697",278.0,14.63,¥0.3296,¥0.0173,63.2%,94.7%,100.0%,n/a,100.0%,100.0%,100.0%,66.7%,94.7%,94.7%,94.7%
+qwen3-vl-flash,Alibaba Bailian,19,19,0,0,0,90.2%,88.3%,34,"52,193","2,624","54,817","2,885",67.5,3.55,¥0.0118,¥0.0006,42.1%,100.0%,100.0%,n/a,70.0%,100.0%,94.7%,66.7%,100.0%,94.7%,94.7%
+gemini-2.5-flash,Google Gemini via AIHubMix,19,19,0,0,0,86.5%,87.1%,8,"68,609","17,462","86,071","4,530",253.8,13.36,¥0.4625,¥0.0243,42.1%,89.5%,100.0%,n/a,100.0%,100.0%,94.7%,66.7%,94.7%,89.5%,89.5%
+gpt-4.1-mini,OpenAI via AIHubMix,19,19,0,0,0,78.9%,74.9%,2,"28,614","2,106","30,720","1,617",130.4,6.86,¥0.1067,¥0.0056,26.3%,84.2%,100.0%,n/a,70.0%,100.0%,78.9%,11.1%,84.2%,84.2%,73.7%
+claude-sonnet-4-5,Anthropic via AIHubMix,19,19,0,0,0,60.2%,52.6%,2,"36,898","2,500","39,398","2,074",322.5,16.98,¥1.07,¥0.0562,21.1%,63.2%,89.5%,n/a,20.0%,84.2%,42.1%,0.0%,57.9%,57.9%,47.4%
+pixtral-large-latest,Mistral AI via AIHubMix,19,0,19,0,0,n/a,n/a,0,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a,n/a

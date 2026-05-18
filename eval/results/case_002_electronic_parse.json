@@ -1,0 +1,11 @@
+{
+  "movie_title": "东京物语",
+  "show_date": "2026-04-02",
+  "show_time": "14:00",
+  "cinema_name": "中国电影资料馆",
+  "hall_name": "2号厅",
+  "payment_status": "已支付",
+  "price": 40.0,
+  "confidence": {},
+  "missing_fields": []
+}

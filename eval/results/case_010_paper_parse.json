@@ -1,0 +1,10 @@
+{
+  "movie_title": "城市之光",
+  "show_date": "2026-05-05",
+  "cinema_address": "中国电影资料馆",
+  "hall_name": "3号厅",
+  "seat_info": "5排3座",
+  "price": 20.0,
+  "confidence": {},
+  "missing_fields": []
+}

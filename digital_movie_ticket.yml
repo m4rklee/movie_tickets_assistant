@@ -1,0 +1,1573 @@
+app:
+  description: ''
+  icon: 🎫
+  icon_background: '#FFEAD5'
+  icon_type: emoji
+  mode: advanced-chat
+  name: digital_movie_ticket
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/tongyi:0.1.41@85be0ee644e13561909e1dc99c73a19896acdcc4e4162f91e2e615cc88d35b44
+    version: null
+kind: app
+version: 0.6.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - remote_url
+      - local_file
+      enabled: true
+      fileUploadConfig:
+        attachment_image_file_size_limit: 2
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        file_upload_limit: 20
+        image_file_batch_limit: 10
+        image_file_size_limit: 10
+        single_chunk_attachment_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: http-request
+      id: llm-source-1778937010492-target
+      selected: false
+      source: llm
+      sourceHandle: source
+      target: '1778937010492'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: http-request
+        targetType: answer
+      id: 1778937010492-source-1778939764701-target
+      selected: false
+      source: '1778937010492'
+      sourceHandle: source
+      target: '1778939764701'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: question-classifier
+      id: 1778933529373-source-1778940247773-target
+      source: '1778933529373'
+      sourceHandle: source
+      target: '1778940247773'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: llm
+      id: 1778940247773-1778940305324-1778940323005-target
+      selected: false
+      source: '1778940247773'
+      sourceHandle: '1778940305324'
+      target: '1778940323005'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1778940323005-source-1778940327379-target
+      selected: false
+      source: '1778940323005'
+      sourceHandle: source
+      target: '1778940327379'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: agent
+        targetType: answer
+      id: 1778940354934-source-1778940686868-target
+      selected: false
+      source: '1778940354934'
+      sourceHandle: source
+      target: '1778940686868'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: template-transform
+      id: 1778940247773-2-1778941084946-target
+      selected: false
+      source: '1778940247773'
+      sourceHandle: '2'
+      target: '1778941084946'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: template-transform
+        targetType: agent
+      id: 1778941084946-source-1778940354934-target
+      selected: false
+      source: '1778941084946'
+      sourceHandle: source
+      target: '1778940354934'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: template-transform
+      id: 1778940247773-1-1779019980472-target
+      source: '1778940247773'
+      sourceHandle: '1'
+      target: '1779019980472'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: template-transform
+        targetType: llm
+      id: 1779019980472-source-llm-target
+      source: '1779019980472'
+      sourceHandle: source
+      target: llm
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        selected: false
+        title: 用户输入
+        type: start
+        variables: []
+      height: 73
+      id: '1778933529373'
+      position:
+        x: -20.366931962041946
+        y: 224.1046716777056
+      positionAbsolute:
+        x: -20.366931962041946
+        y: 224.1046716777056
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen3.6-flash
+          provider: langgenius/tongyi/tongyi
+        prompt_template:
+        - id: f38f19db-76bf-4139-9fb9-306d538b89e3
+          role: system
+          text: '你是一个电影票识别专家，负责精准提取图片中的所有的影片信息。
+
+            ## 任务
+
+            用户会发送图片，其中包含电影的名称、价格、观看时间、位置等，你需要精准识别各项内容。
+
+            ## 要求
+
+            请使用JSON格式输出识别后的影片信息，除此之外，不要输出任何其他内容
+
+            ## 输出字段
+
+            数据库中的字段：{{#1779019980472.output#}}，输出截图中所有存在的字段信息。
+
+            '
+        selected: false
+        title: LLM
+        type: llm
+        vision:
+          configs:
+            detail: high
+            variable_selector:
+            - sys
+            - files
+          enabled: true
+      height: 88
+      id: llm
+      position:
+        x: 796.4962272077669
+        y: 173.97652822560946
+      positionAbsolute:
+        x: 796.4962272077669
+        y: 173.97652822560946
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data:
+          - id: key-value-124
+            key: ''
+            type: text
+            value: '{{#llm.text#}}'
+          type: json
+        headers: Content-Type:application/json
+        method: post
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: HTTP 请求
+        type: http-request
+        url: http://host.docker.internal:8090/save_movie_tickets
+        variables: []
+      height: 137
+      id: '1778937010492'
+      position:
+        x: 1065.6014064663684
+        y: 173.97652822560946
+      positionAbsolute:
+        x: 1065.6014064663684
+        y: 173.97652822560946
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        answer: '{{#1778937010492.body#}}'
+        selected: false
+        title: 直接回复 2
+        type: answer
+        variables: []
+      height: 103
+      id: '1778939764701'
+      position:
+        x: 1348.9037309071814
+        y: 173.97652822560946
+      positionAbsolute:
+        x: 1348.9037309071814
+        y: 173.97652822560946
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        classes:
+        - id: '1'
+          name: 用户的意图是录入票据
+        - id: '2'
+          name: 用户想要查询自己看过的电影信息（如价格、时长等）、用户要求生成报表等
+        - id: '1778940305324'
+          name: 与电影、票据管理无关、与用户本身无关的话题
+        instructions: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen3.6-flash
+          provider: langgenius/tongyi/tongyi
+        query_variable_selector:
+        - '1778933529373'
+        - sys.query
+        selected: false
+        title: 问题分类器
+        type: question-classifier
+        vision:
+          enabled: false
+      height: 208
+      id: '1778940247773'
+      position:
+        x: 286.1307731354233
+        y: 245.1046716777056
+      positionAbsolute:
+        x: 286.1307731354233
+        y: 245.1046716777056
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        memory:
+          query_prompt_template: '{{#sys.query#}}
+
+
+            {{#sys.files#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 50
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-v3.1
+          provider: langgenius/tongyi/tongyi
+        prompt_template:
+        - id: d12975a1-81a6-4a2a-aaa9-69f173851ebc
+          role: system
+          text: 你是一个友善的用户助手，和用户闲聊。
+        selected: false
+        title: LLM 2
+        type: llm
+        vision:
+          enabled: false
+      height: 88
+      id: '1778940323005'
+      position:
+        x: 555.3798331188714
+        y: 627.9454723231834
+      positionAbsolute:
+        x: 555.3798331188714
+        y: 627.9454723231834
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        answer: '{{#1778940323005.text#}}'
+        selected: false
+        title: 直接回复 2
+        type: answer
+        variables: []
+      height: 103
+      id: '1778940327379'
+      position:
+        x: 1146.5682953081084
+        y: 627.9454723231834
+      positionAbsolute:
+        x: 1146.5682953081084
+        y: 627.9454723231834
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        agent_parameters:
+          instruction:
+            type: constant
+            value: '你是数据库分析助手，需要协助用户完成涉及到数据库的相关任务。
+
+
+              ## 任务一：数据库查询
+
+              如果用户的要求只涉及数据库查询，请调用数据库工具查询，别名应该避免使用MySQL中的特殊关键字。
+
+              数据库结构：{{#1778941084946.output#}}
+
+              当用户进行电影名相关的查询时，如果查询不到，请使用模糊查询。
+
+
+              ## 任务二：可视化分析
+
+              如果用户的要求涉及到“可视化报表、图表、柱状图、饼图、趋势图”等时，先调用工具查询数据库，得到数据，再调用 AntV 可视化工具生成图表，不能只用文字描述。
+
+
+              ## 要求
+
+              最终返回结果需要严格依据数据库查询结果，应该避免为用户提供编造的信息'
+          maximum_iterations:
+            type: constant
+            value: 5
+          model:
+            type: constant
+            value:
+              completion_params: {}
+              mode: chat
+              model: qwen3.6-flash
+              model_type: llm
+              provider: langgenius/tongyi/tongyi
+              type: model-selector
+          query:
+            type: constant
+            value: '{{#sys.query#}}'
+          tools:
+            type: constant
+            value:
+            - enabled: true
+              extra:
+                description: 数据库SQL查询工具。
+              parameters:
+                db_host:
+                  auto: 0
+                  value:
+                    type: mixed
+                    value: host.docker.internal
+                db_name:
+                  auto: 0
+                  value:
+                    type: mixed
+                    value: my_movie_tickets
+                db_password:
+                  auto: 0
+                  value:
+                    type: mixed
+                    value: xiaopang123,.
+                db_port:
+                  auto: 0
+                  value:
+                    type: constant
+                    value: '3306'
+                db_properties:
+                  auto: 1
+                  value: null
+                db_type:
+                  auto: 0
+                  value:
+                    type: constant
+                    value: mysql
+                db_username:
+                  auto: 0
+                  value:
+                    type: mixed
+                    value: root
+                query_sql:
+                  auto: 1
+                  value: null
+              provider_name: junjiem/db_query/db_query
+              provider_show_name: junjiem/db_query/db_query
+              settings:
+                output_format:
+                  value:
+                    type: constant
+                    value: markdown
+              tool_description: 数据库SQL查询工具。
+              tool_label: SQL查询
+              tool_name: sql_query
+              type: builtin
+            - enabled: true
+              extra:
+                description: 生成一个面积图来表示在连续自变量下的数据趋势，并观察整体数据趋势，例如，位移 = 速度（平均速度或瞬时速度）×
+                  时间:s = v × t。如果 x 轴是时间（t），y 轴是每个时刻的速度（v），则面积图可以让您观察速度随时间的变化趋势，并通过面积的大小推断出所行驶的距离。
+              parameters:
+                axisXTitle:
+                  auto: 1
+                  value: null
+                axisYTitle:
+                  auto: 1
+                  value: null
+                data:
+                  auto: 1
+                  value: null
+                stack:
+                  auto: 1
+                  value: null
+                title:
+                  auto: 1
+                  value: null
+              provider_name: antv/visualization/visualization
+              provider_show_name: antv/visualization/visualization
+              settings:
+                height:
+                  value:
+                    type: constant
+                    value: 400
+                style:
+                  value:
+                    type: mixed
+                    value: null
+                theme:
+                  value:
+                    type: constant
+                    value: default
+                width:
+                  value:
+                    type: constant
+                    value: 600
+              tool_description: 生成一个面积图来表示在连续自变量下的数据趋势，并观察整体数据趋势，例如，位移 = 速度（平均速度或瞬时速度）×
+                时间:s = v × t。如果 x 轴是时间（t），y 轴是每个时刻的速度（v），则面积图可以让您观察速度随时间的变化趋势，并通过面积的大小推断出所行驶的距离。
+              tool_label: 生成面积图
+              tool_name: generate_area_chart
+              type: builtin
+            - enabled: true
+              extra:
+                description: 生成一个条形图来展示不同类别之间的数值比较，例如，对比不同种类数据并且进行横向比较。
+              parameters:
+                axisXTitle:
+                  auto: 1
+                  value: null
+                axisYTitle:
+                  auto: 1
+                  value: null
+                data:
+                  auto: 1
+                  value: null
+                group:
+                  auto: 1
+                  value: null
+                stack:
+                  auto: 1
+                  value: null
+                title:
+                  auto: 1
+                  value: null
+              provider_name: antv/visualization/visualization
+              provider_show_name: antv/visualization/visualization
+              settings:
+                height:
+                  value:
+                    type: constant
+                    value: 400
+                style:
+                  value:
+                    type: mixed
+                    value: null
+                theme:
+                  value:
+                    type: constant
+                    value: default
+                width:
+                  value:
+                    type: constant
+                    value: 600
+              tool_description: 生成一个条形图来展示不同类别之间的数值比较，例如，对比不同种类数据并且进行横向比较。
+              tool_label: 生成条形图
+              tool_name: generate_bar_chart
+              type: builtin
+            - enabled: true
+              extra:
+                description: 生成一个箱线图来展示不同类别之间的统计摘要，例如，比较不同种类数据点的分布。
+              parameters:
+                axisXTitle:
+                  auto: 1
+                  value: null
+                axisYTitle:
+                  auto: 1
+                  value: null
+                data:
+                  auto: 1
+                  value: null
+                title:
+                  auto: 1
+                  value: null
+              provider_name: antv/visualization/visualization
+              provider_show_name: antv/visualization/visualization
+              settings:
+                height:
+                  value:
+                    type: constant
+                    value: 400
+                style:
+                  value:
+                    type: mixed
+                    value: null
+                theme:
+                  value:
+                    type: constant
+                    value: default
+                width:
+                  value:
+                    type: constant
+                    value: 600
+              tool_description: 生成一个箱线图来展示不同类别之间的统计摘要，例如，比较不同种类数据点的分布。
+              tool_label: 生成箱线图
+              tool_name: generate_boxplot_chart
+              type: builtin
+            - enabled: true
+              extra:
+                description: 生成一个柱状图，对不同类别进行数值比较，例如，当数值接近时，由于人眼对于高度的感知优于其他视觉元素（如面积、角度等），因此，使用柱状图更加合适。
+              parameters:
+                axisXTitle:
+                  auto: 1
+                  value: null
+                axisYTitle:
+                  auto: 1
+                  value: null
+                data:
+                  auto: 1
+                  value: null
+                group:
+                  auto: 1
+                  value: null
+                stack:
+                  auto: 1
+                  value: null
+                title:
+                  auto: 1
+                  value: null
+              provider_name: antv/visualization/visualization
+              provider_show_name: antv/visualization/visualization
+              settings:
+                height:
+                  value:
+                    type: constant
+                    value: 400
+                style:
+                  value:
+                    type: mixed
+                    value: null
+                theme:
+                  value:
+                    type: constant
+                    value: default
+                width:
+                  value:
+                    type: constant
+                    value: 600
+              tool_description: 生成一个柱状图，对不同类别进行数值比较，例如，当数值接近时，由于人眼对于高度的感知优于其他视觉元素（如面积、角度等），因此，使用柱状图更加合适。
+              tool_label: 生成柱状图
+              tool_name: generate_column_chart
+              type: builtin
+            - enabled: true
+              extra:
+                description: 生成一个双轴图，双轴图是一种组合图表，通常结合柱状图和折线图来同时展示数据的趋势和对比，例如随时间变化的销售和利润趋势。
+              parameters:
+                axisXTitle:
+                  auto: 1
+                  value: null
+                categories:
+                  auto: 1
+                  value: null
+                series:
+                  auto: 1
+                  value: null
+                title:
+                  auto: 1
+                  value: null
+              provider_name: antv/visualization/visualization
+              provider_show_name: antv/visualization/visualization
+              settings:
+                height:
+                  value:
+                    type: constant
+                    value: 400
+                style:
+                  value:
+                    type: mixed
+                    value: null
+                theme:
+                  value:
+                    type: constant
+                    value: default
+                width:
+                  value:
+                    type: constant
+                    value: 600
+              tool_description: 生成一个双轴图，双轴图是一种组合图表，通常结合柱状图和折线图来同时展示数据的趋势和对比，例如随时间变化的销售和利润趋势。
+              tool_label: 生成双轴图
+              tool_name: generate_dual_axes_chart
+              type: builtin
+            - enabled: true
+              extra:
+                description: 生成区域地图，它通常用于展示数据集的行政划分和覆盖范围。不适合展示特定位置的分布，如城市行政区划、全国省份城市GDP分布图等。该工具仅适用于中国境内的数据地图生成。
+              parameters:
+                data:
+                  auto: 1
+                  value: null
+                title:
+                  auto: 1
+                  value: null
+              provider_name: antv/visualization/visualization
+              provider_show_name: antv/visualization/visualization
+              settings:
+                height:
+                  value:
+                    type: constant
+                    value: 1000
+                width:
+                  value:
+                    type: constant
+                    value: 1600
+              tool_description: 生成区域地图，它通常用于展示数据集的行政划分和覆盖范围。不适合展示特定位置的分布，如城市行政区划、全国省份城市GDP分布图等。该工具仅适用于中国境内的数据地图生成。
+              tool_label: 生成区域地图
+              tool_name: generate_district_map
+              type: builtin
+            - enabled: true
+              extra:
+                description: 生成鱼骨图，它是一种以核心问题为鱼头，通过鱼骨分支的形式分析和展示问题原因或结果的图表。它利用鱼骨的结构，将问题分解为多个类别，并在每个类别下进一步细分具体原因或结果，从而清晰地展现问题的全貌。
+              parameters:
+                data:
+                  auto: 1
+                  value: null
+                title:
+                  auto: 1
+                  value: null
+              provider_name: antv/visualization/visualization
+              provider_show_name: antv/visualization/visualization
+              settings:
+                height:
+                  value:
+                    type: constant
+                    value: 400
+                style:
+                  value:
+                    type: mixed
+                    value: null
+                theme:
+                  value:
+                    type: constant
+                    value: default
+                width:
+                  value:
+                    type: constant
+                    value: 600
+              tool_description: 生成鱼骨图，它是一种以核心问题为鱼头，通过鱼骨分支的形式分析和展示问题原因或结果的图表。它利用鱼骨的结构，将问题分解为多个类别，并在每个类别下进一步细分具体原因或结果，从而清晰地展现问题的全貌。
+              tool_label: 生成鱼骨图
+              tool_name: generate_fishbone_diagram
+              type: builtin
+            - enabled: true
+              extra:
+                description: 生成流程图，用于直观地表示过程或系统的步骤和决策点。它展示了从开始到结束的整个流程。每个节点代表一个特定的步骤或决策点，边则表示步骤之间的顺序和关系。
+              parameters:
+                data:
+                  auto: 1
+                  value: null
+                title:
+                  auto: 1
+                  value: null
+              provider_name: antv/visualization/visualization
+              provider_show_name: antv/visualization/visualization
+              settings:
+                height:
+                  value:
+                    type: constant
+                    value: 400
+                style:
+                  value:
+                    type: mixed
+                    value: null
+                theme:
+                  value:
+                    type: constant
+                    value: default
+                width:
+                  value:
+                    type: constant
+                    value: 600
+              tool_description: 生成流程图，用于直观地表示过程或系统的步骤和决策点。它展示了从开始到结束的整个流程。每个节点代表一个特定的步骤或决策点，边则表示步骤之间的顺序和关系。
+              tool_label: 生成流程图
+              tool_name: generate_flow_diagram
+              type: builtin
+            - enabled: true
+              extra:
+                description: 生成漏斗图来可视化数据在各个阶段之间的渐进减少，例如，用户从访问网站到完成购买的转化率。
+              parameters:
+                data:
+                  auto: 1
+                  value: null
+                title:
+                  auto: 1
+                  value: null
+              provider_name: antv/visualization/visualization
+              provider_show_name: antv/visualization/visualization
+              settings:
+                height:
+                  value:
+                    type: constant
+                    value: 400
+                style:
+                  value:
+                    type: mixed
+                    value: null
+                theme:
+                  value:
+                    type: constant
+                    value: default
+                width:
+                  value:
+                    type: constant
+                    value: 600
+              tool_description: 生成漏斗图来可视化数据在各个阶段之间的渐进减少，例如，用户从访问网站到完成购买的转化率。
+              tool_label: 生成漏斗图
+              tool_name: generate_funnel_chart
+              type: builtin
+            - enabled: true
+              extra:
+                description: 生成一个直方图来显示特定范围内数据点的频率，可以观察数据分布情况，例如正态分布和偏态分布，并识别数据集中区域和极端值。
+              parameters:
+                binNumber:
+                  auto: 1
+                  value: null
+                data:
+                  auto: 1
+                  value: null
+                title:
+                  auto: 1
+                  value: null
+              provider_name: antv/visualization/visualization
+              provider_show_name: antv/visualization/visualization
+              settings:
+                height:
+                  value:
+                    type: constant
+                    value: 400
+                style:
+                  value:
+                    type: mixed
+                    value: null
+                theme:
+                  value:
+                    type: constant
+                    value: default
+                width:
+                  value:
+                    type: constant
+                    value: 600
+              tool_description: 生成一个直方图来显示特定范围内数据点的频率，可以观察数据分布情况，例如正态分布和偏态分布，并识别数据集中区域和极端值。
+              tool_label: 生成直方图
+              tool_name: generate_histogram_chart
+              type: builtin
+            - enabled: true
+              extra:
+                description: 生成一个折线图来显示随时间变化的趋势，例如，2000 年到 2016 年苹果电脑销量与苹果公司利润比例的变化。
+              parameters:
+                axisXTitle:
+                  auto: 1
+                  value: null
+                axisYTitle:
+                  auto: 1
+                  value: null
+                data:
+                  auto: 1
+                  value: null
+                title:
+                  auto: 1
+                  value: null
+              provider_name: antv/visualization/visualization
+              provider_show_name: antv/visualization/visualization
+              settings:
+                height:
+                  value:
+                    type: constant
+                    value: 400
+                style:
+                  value:
+                    type: mixed
+                    value: null
+                theme:
+                  value:
+                    type: constant
+                    value: default
+                width:
+                  value:
+                    type: constant
+                    value: 600
+              tool_description: 生成一个折线图来显示随时间变化的趋势，例如，2000 年到 2016 年苹果电脑销量与苹果公司利润比例的变化。
+              tool_label: 生成折线图
+              tool_name: generate_line_chart
+              type: builtin
+            - enabled: true
+              extra:
+                description: 生成水波图来可视化一个百分比值，例如，水库的当前占比率或项目的完成百分比。
+              parameters:
+                percent:
+                  auto: 1
+                  value: null
+                shape:
+                  auto: 1
+                  value: null
+                title:
+                  auto: 1
+                  value: null
+              provider_name: antv/visualization/visualization
+              provider_show_name: antv/visualization/visualization
+              settings:
+                height:
+                  value:
+                    type: constant
+                    value: 400
+                style:
+                  value:
+                    type: mixed
+                    value: null
+                theme:
+                  value:
+                    type: constant
+                    value: default
+                width:
+                  value:
+                    type: constant
+                    value: 600
+              tool_description: 生成水波图来可视化一个百分比值，例如，水库的当前占比率或项目的完成百分比。
+              tool_label: 生成水波图
+              tool_name: generate_liquid_chart
+              type: builtin
+            - enabled: true
+              extra:
+                description: 生成一个思维导图，它以层次化结构组织和呈现信息，从中心主题向外辐射出各个分支，例如，展示主话题与其子话题之间关系的图示。
+              parameters:
+                data:
+                  auto: 1
+                  value: null
+                title:
+                  auto: 1
+                  value: null
+              provider_name: antv/visualization/visualization
+              provider_show_name: antv/visualization/visualization
+              settings:
+                height:
+                  value:
+                    type: constant
+                    value: 400
+                style:
+                  value:
+                    type: mixed
+                    value: null
+                theme:
+                  value:
+                    type: constant
+                    value: default
+                width:
+                  value:
+                    type: constant
+                    value: 600
+              tool_description: 生成一个思维导图，它以层次化结构组织和呈现信息，从中心主题向外辐射出各个分支，例如，展示主话题与其子话题之间关系的图示。
+              tool_label: 生成思维导图
+              tool_name: generate_mind_map
+              type: builtin
+            - enabled: true
+              extra:
+                description: 生成一个网络图来展示实体（节点）之间的关系（边），例如，社交网络中人与人之间的关系。
+              parameters:
+                data:
+                  auto: 1
+                  value: null
+                title:
+                  auto: 1
+                  value: null
+              provider_name: antv/visualization/visualization
+              provider_show_name: antv/visualization/visualization
+              settings:
+                height:
+                  value:
+                    type: constant
+                    value: 400
+                style:
+                  value:
+                    type: mixed
+                    value: null
+                theme:
+                  value:
+                    type: constant
+                    value: default
+                width:
+                  value:
+                    type: constant
+                    value: 600
+              tool_description: 生成一个网络图来展示实体（节点）之间的关系（边），例如，社交网络中人与人之间的关系。
+              tool_label: 生成网络图
+              tool_name: generate_network_graph
+              type: builtin
+            - enabled: true
+              extra:
+                description: 生成一个组织结构图来展示组织的层级结构，例如，展示CEO和其直接下属之间关系的图表。
+              parameters:
+                data:
+                  auto: 1
+                  value: null
+                orient:
+                  auto: 1
+                  value: null
+              provider_name: antv/visualization/visualization
+              provider_show_name: antv/visualization/visualization
+              settings:
+                height:
+                  value:
+                    type: constant
+                    value: 400
+                style:
+                  value:
+                    type: mixed
+                    value: null
+                theme:
+                  value:
+                    type: constant
+                    value: default
+                width:
+                  value:
+                    type: constant
+                    value: 600
+              tool_description: 生成一个组织结构图来展示组织的层级结构，例如，展示CEO和其直接下属之间关系的图表。
+              tool_label: 生成组织架构图
+              tool_name: generate_organization_chart
+              type: builtin
+            - enabled: true
+              extra:
+                description: 生成路径地图以显示用户计划的路线，例如旅行指南路线。
+              parameters:
+                data:
+                  auto: 1
+                  value: null
+                title:
+                  auto: 1
+                  value: null
+              provider_name: antv/visualization/visualization
+              provider_show_name: antv/visualization/visualization
+              settings:
+                height:
+                  value:
+                    type: constant
+                    value: 1000
+                width:
+                  value:
+                    type: constant
+                    value: 1600
+              tool_description: 生成路径地图以显示用户计划的路线，例如旅行指南路线。
+              tool_label: 生成路径地图
+              tool_name: generate_path_map
+              type: builtin
+            - enabled: true
+              extra:
+                description: 生成一个饼图来展示各部分的比例，例如市场占有率和预算分配。
+              parameters:
+                data:
+                  auto: 1
+                  value: null
+                innerRadius:
+                  auto: 1
+                  value: null
+                title:
+                  auto: 1
+                  value: null
+              provider_name: antv/visualization/visualization
+              provider_show_name: antv/visualization/visualization
+              settings:
+                height:
+                  value:
+                    type: constant
+                    value: 400
+                style:
+                  value:
+                    type: mixed
+                    value: null
+                theme:
+                  value:
+                    type: constant
+                    value: default
+                width:
+                  value:
+                    type: constant
+                    value: 600
+              tool_description: 生成一个饼图来展示各部分的比例，例如市场占有率和预算分配。
+              tool_label: 生成饼图
+              tool_name: generate_pie_chart
+              type: builtin
+            - enabled: true
+              extra:
+                description: 生成标注地图以显示地图上点数据的位置和分布，例如景点、医院、超市等的位置分布。
+              parameters:
+                data:
+                  auto: 1
+                  value: null
+                title:
+                  auto: 1
+                  value: null
+              provider_name: antv/visualization/visualization
+              provider_show_name: antv/visualization/visualization
+              settings:
+                height:
+                  value:
+                    type: constant
+                    value: 1000
+                width:
+                  value:
+                    type: constant
+                    value: 1600
+              tool_description: 生成标注地图以显示地图上点数据的位置和分布，例如景点、医院、超市等的位置分布。
+              tool_label: 生成标注地图
+              tool_name: generate_pin_map
+              type: builtin
+            - enabled: true
+              extra:
+                description: 生成一个雷达图来展示多维数据（四个维度或更多），例如，从五个维度（易用性、功能性、摄像头、基准测试得分和电池续航）评估华为和苹果手机。
+              parameters:
+                data:
+                  auto: 1
+                  value: null
+                title:
+                  auto: 1
+                  value: null
+              provider_name: antv/visualization/visualization
+              provider_show_name: antv/visualization/visualization
+              settings:
+                height:
+                  value:
+                    type: constant
+                    value: 400
+                style:
+                  value:
+                    type: mixed
+                    value: null
+                theme:
+                  value:
+                    type: constant
+                    value: default
+                width:
+                  value:
+                    type: constant
+                    value: 600
+              tool_description: 生成一个雷达图来展示多维数据（四个维度或更多），例如，从五个维度（易用性、功能性、摄像头、基准测试得分和电池续航）评估华为和苹果手机。
+              tool_label: 生成雷达图
+              tool_name: generate_radar_chart
+              type: builtin
+            - enabled: true
+              extra:
+                description: 生成一个散点图来展示两个变量之间的关系，有助于发现它们之间的关系或趋势，例如相关性的强度、数据分布模式。
+              parameters:
+                data:
+                  auto: 1
+                  value: null
+                title:
+                  auto: 1
+                  value: null
+              provider_name: antv/visualization/visualization
+              provider_show_name: antv/visualization/visualization
+              settings:
+                height:
+                  value:
+                    type: constant
+                    value: 400
+                style:
+                  value:
+                    type: mixed
+                    value: null
+                theme:
+                  value:
+                    type: constant
+                    value: default
+                width:
+                  value:
+                    type: constant
+                    value: 600
+              tool_description: 生成一个散点图来展示两个变量之间的关系，有助于发现它们之间的关系或趋势，例如相关性的强度、数据分布模式。
+              tool_label: 生成散点图
+              tool_name: generate_scatter_chart
+              type: builtin
+            - enabled: true
+              extra:
+                description: 生成一个矩阵树图来展示层次化数据，并能直观地显示同级项目之间的比较，例如，用矩阵树图显示磁盘空间使用情况。
+              parameters:
+                data:
+                  auto: 1
+                  value: null
+                title:
+                  auto: 1
+                  value: null
+              provider_name: antv/visualization/visualization
+              provider_show_name: antv/visualization/visualization
+              settings:
+                height:
+                  value:
+                    type: constant
+                    value: 400
+                style:
+                  value:
+                    type: mixed
+                    value: null
+                theme:
+                  value:
+                    type: constant
+                    value: default
+                width:
+                  value:
+                    type: constant
+                    value: 600
+              tool_description: 生成一个矩阵树图来展示层次化数据，并能直观地显示同级项目之间的比较，例如，用矩阵树图显示磁盘空间使用情况。
+              tool_label: 生成矩阵树图
+              tool_name: generate_treemap_chart
+              type: builtin
+            - enabled: true
+              extra:
+                description: 生成一个韦恩图来可视化不同集合之间的关系，展示它们相交和重叠的方式，例如各种组之间的共同性和差异。
+              parameters:
+                data:
+                  auto: 1
+                  value: null
+                title:
+                  auto: 1
+                  value: null
+              provider_name: antv/visualization/visualization
+              provider_show_name: antv/visualization/visualization
+              settings:
+                height:
+                  value:
+                    type: constant
+                    value: 400
+                style:
+                  value:
+                    type: mixed
+                    value: null
+                theme:
+                  value:
+                    type: constant
+                    value: default
+                width:
+                  value:
+                    type: constant
+                    value: 600
+              tool_description: 生成一个韦恩图来可视化不同集合之间的关系，展示它们相交和重叠的方式，例如各种组之间的共同性和差异。
+              tool_label: 生成韦恩图
+              tool_name: generate_venn_chart
+              type: builtin
+            - enabled: true
+              extra:
+                description: 生成一个小提琴图来展示不同类别之间的统计摘要，例如，比较不同种类数据点的分布。
+              parameters:
+                axisXTitle:
+                  auto: 1
+                  value: null
+                axisYTitle:
+                  auto: 1
+                  value: null
+                data:
+                  auto: 1
+                  value: null
+                title:
+                  auto: 1
+                  value: null
+              provider_name: antv/visualization/visualization
+              provider_show_name: antv/visualization/visualization
+              settings:
+                height:
+                  value:
+                    type: constant
+                    value: 400
+                style:
+                  value:
+                    type: mixed
+                    value: null
+                theme:
+                  value:
+                    type: constant
+                    value: default
+                width:
+                  value:
+                    type: constant
+                    value: 600
+              tool_description: 生成一个小提琴图来展示不同类别之间的统计摘要，例如，比较不同种类数据点的分布。
+              tool_label: 生成小提琴图
+              tool_name: generate_violin_chart
+              type: builtin
+            - enabled: true
+              extra:
+                description: 生成一个瀑布图，用于展示初始值如何受到一系列正值或负值的影响，例如，显示财务数据或流程中的累积效果。
+              parameters:
+                axisXTitle:
+                  auto: 1
+                  value: null
+                axisYTitle:
+                  auto: 1
+                  value: null
+                data:
+                  auto: 1
+                  value: null
+                title:
+                  auto: 1
+                  value: null
+              provider_name: antv/visualization/visualization
+              provider_show_name: antv/visualization/visualization
+              settings:
+                height:
+                  value:
+                    type: constant
+                    value: 400
+                style:
+                  value:
+                    type: mixed
+                    value: null
+                theme:
+                  value:
+                    type: constant
+                    value: default
+                width:
+                  value:
+                    type: constant
+                    value: 600
+              tool_description: 生成一个瀑布图，用于展示初始值如何受到一系列正值或负值的影响，例如，显示财务数据或流程中的累积效果。
+              tool_label: 生成瀑布图
+              tool_name: generate_waterfall_chart
+              type: builtin
+            - enabled: true
+              extra:
+                description: 生成一个词云图，通过文本大小的变化来展示词频或权重，例如，分析社交媒体、评论或反馈中的常见词。
+              parameters:
+                data:
+                  auto: 1
+                  value: null
+                title:
+                  auto: 1
+                  value: null
+              provider_name: antv/visualization/visualization
+              provider_show_name: antv/visualization/visualization
+              settings:
+                height:
+                  value:
+                    type: constant
+                    value: 400
+                style:
+                  value:
+                    type: mixed
+                    value: null
+                theme:
+                  value:
+                    type: constant
+                    value: default
+                width:
+                  value:
+                    type: constant
+                    value: 600
+              tool_description: 生成一个词云图，通过文本大小的变化来展示词频或权重，例如，分析社交媒体、评论或反馈中的常见词。
+              tool_label: 生成词云图
+              tool_name: generate_word_cloud_chart
+              type: builtin
+        agent_strategy_label: FunctionCalling
+        agent_strategy_name: function_calling
+        agent_strategy_provider_name: langgenius/agent/agent
+        memory:
+          query_prompt_template: '{{#sys.query#}}
+
+
+            {{#sys.files#}}'
+          window:
+            enabled: false
+            size: 50
+        meta:
+          minimum_dify_version: 1.7.0
+          version: 0.0.2
+        output_schema: {}
+        plugin_unique_identifier: langgenius/agent:0.0.37@a5dcc6ea00bca23439b49ff7d65704f3f5dd6ce2ca353205e62278e2148d84b6
+        selected: false
+        title: Agent
+        tool_node_version: '2'
+        type: agent
+      height: 232
+      id: '1778940354934'
+      position:
+        x: 854.8353277173338
+        y: 358.002629683327
+      positionAbsolute:
+        x: 854.8353277173338
+        y: 358.002629683327
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        answer: '{{#1778940354934.text#}}'
+        selected: false
+        title: 直接回复 3
+        type: answer
+        variables: []
+      height: 103
+      id: '1778940686868'
+      position:
+        x: 1348.9037309071814
+        y: 358.002629683327
+      positionAbsolute:
+        x: 1348.9037309071814
+        y: 358.002629683327
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        selected: false
+        template: '当前数据库名：my_movie_tickets
+
+
+          当前只允许查询以下数据表：
+
+
+          表名：movie_tickets
+
+          含义：用户的电影票/观影记录表。
+
+
+          字段说明：
+
+          - id：主键ID，整数
+
+          - movie_name：电影名称，字符串
+
+          - ticket_date：票面日期时间，DATETIME
+
+          - start_time：电影开始时间，TIME
+
+          - end_time：电影结束时间，TIME
+
+          - movie_duration：电影时长，单位分钟，整数
+
+          - price：票价，DECIMAL
+
+          - cinema_name：影院名称，字符串
+
+          - cinema_address：影院地址，字符串
+
+          - cinema_hall：影厅，字符串
+
+          - raw_text：大模型原始识别结果，TEXT
+
+          - created_at：记录入库时间，TIMESTAMP
+
+
+          查询规则：
+
+          1. 只能查询 movie_tickets 表。
+
+          2. 禁止查询 users 表。
+
+          3. 禁止使用 INSERT、UPDATE、DELETE、DROP、ALTER、CREATE。
+
+          4. 只允许生成 SELECT 查询。
+
+          5. 查询结果默认限制 LIMIT 20。
+
+          6. 如果用户问“最贵的电影”，使用 price 字段排序。
+
+          7. 如果用户问“最长的电影”，使用 movie_duration 字段排序。
+
+          8. 如果用户问“最近看的电影”，使用 start_time 字段排序。'
+        title: 模板转换
+        type: template-transform
+        variables: []
+      height: 52
+      id: '1778941084946'
+      position:
+        x: 562.1243476388405
+        y: 358.002629683327
+      positionAbsolute:
+        x: 562.1243476388405
+        y: 358.002629683327
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        selected: false
+        template: '当前数据库名：my_movie_tickets
+
+
+          当前只允许查询以下数据表：
+
+
+          表名：movie_tickets
+
+          含义：用户的电影票/观影记录表。
+
+
+          字段说明：
+
+          - id：主键ID，整数
+
+          - movie_name：电影名称，字符串
+
+          - ticket_date：票面日期时间，DATETIME
+
+          - start_time：电影开始时间，TIME
+
+          - end_time：电影结束时间，TIME
+
+          - movie_duration：电影时长，单位分钟，整数
+
+          - price：票价，DECIMAL
+
+          - cinema_name：影院名称，字符串
+
+          - cinema_address：影院地址，字符串
+
+          - cinema_hall：影厅，字符串
+
+          - raw_text：大模型原始识别结果，TEXT
+
+          - created_at：记录入库时间，TIMESTAMP'
+        title: 模板转换 2
+        type: template-transform
+        variables: []
+      height: 52
+      id: '1779019980472'
+      position:
+        x: 514.9127459990568
+        y: 173.97652822560946
+      positionAbsolute:
+        x: 514.9127459990568
+        y: 173.97652822560946
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    viewport:
+      x: -199.8131431288706
+      y: 388.4677973047485
+      zoom: 0.5666859496152592
+  rag_pipeline_variables: []

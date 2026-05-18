@@ -1,0 +1,10 @@
+{
+  "ticket_type": "electronic",
+  "movie_title": "花样年华",
+  "show_date": "2026-03-15",
+  "show_time": "19:30",
+  "cinema_name": "中国电影资料馆",
+  "hall_name": "1号厅",
+  "payment_status": "已支付",
+  "price": 45.0
+}

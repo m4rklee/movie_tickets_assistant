@@ -1,0 +1,41 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: filmarchive-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root_secret
+      MYSQL_DATABASE: filmarchive_wallet
+      MYSQL_USER: ticket
+      MYSQL_PASSWORD: ticket_secret
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./sql/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot_secret"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  ticket-api:
+    build: ./ticket-api
+    container_name: filmarchive-ticket-api
+    restart: unless-stopped
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: mysql+pymysql://ticket:ticket_secret@mysql:3306/filmarchive_wallet
+      TICKET_API_KEY: dev-local-key
+      UPLOAD_DIR: /app/uploads
+      DRAFT_TTL_DAYS: "7"
+      CORS_ORIGINS: "*"
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./ticket-api/uploads:/app/uploads
+
+volumes:
+  mysql_data:

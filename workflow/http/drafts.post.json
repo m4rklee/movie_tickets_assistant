@@ -1,0 +1,14 @@
+{
+  "description": "ParseTicket 节点：POST /api/drafts",
+  "method": "POST",
+  "url": "{{TICKET_API_BASE}}/api/drafts",
+  "headers": {
+    "Content-Type": "application/json",
+    "X-API-Key": "{{TICKET_API_KEY}}"
+  },
+  "body": {
+    "ticket_type": "{{ticket_type}}",
+    "extract_json": "{{extract_json}}",
+    "image_path": null
+  }
+}
