@@ -1,4 +1,4 @@
-# FilmArchive Ticket Wallet — 中国电影资料馆电子票夹
+# FilmArchive Ticket Wallet — 中国电影资料馆智能票据助手
 
 ## 一、简介
 
