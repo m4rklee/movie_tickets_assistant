@@ -86,6 +86,8 @@ docker compose up -d
 
 ### 💬 2. 接入飞书
 
+<img src="docs/pics/feishu_bot.png" width="720" alt="飞书机器人对话示例" />
+
 在 Dify + ticket-api 跑通后，通过 [Langbot](https://github.com/RockChinQ/LangBot) 将能力接到飞书：
 
 1. 飞书自建应用（机器人、消息与卡片权限）。
