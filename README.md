@@ -24,7 +24,7 @@
 
 | 电子票截图 | 纸质票 |
 |----------|--------|
-| ![电子票样例](docs/pics/digital_ticket.jpeg) | ![纸质票样例](docs/pics/paper_ticket.jpeg) |
+| <img src="docs/pics/digital_ticket.jpeg" width="360" alt="电子票样例" /> | <img src="docs/pics/paper_ticket.jpeg" width="360" alt="纸质票样例" /> |
 
 - 上传图片，多模态 LLM 提取票据信息，用JSON格式传给后端。
 - 后端校验字段格式；校验通过后将各字段信息写入本地数据库。
