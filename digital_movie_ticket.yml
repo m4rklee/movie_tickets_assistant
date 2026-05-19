@@ -83,10 +83,23 @@ workflow:
         isInIteration: false
         isInLoop: false
         sourceType: http-request
-        targetType: answer
-      id: 1778937010492-source-1778939764701-target
+        targetType: code
+      id: 1778937010492-source-1779020888001-target
       selected: false
       source: '1778937010492'
+      sourceHandle: source
+      target: '1779020888001'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: answer
+      id: 1779020888001-source-1778939764701-target
+      selected: false
+      source: '1779020888001'
       sourceHandle: source
       target: '1778939764701'
       targetHandle: target
@@ -303,7 +316,39 @@ workflow:
       type: custom
       width: 242
     - data:
-        answer: '{{#1778937010492.body#}}'
+        code: "import json\n\n\ndef main(http_body: str) -> dict:\n    if isinstance(http_body,\
+          \ dict):\n        data = http_body\n    else:\n        data = json.loads((http_body\
+          \ or \"\").strip() or \"{}\")\n    return {\n        \"result\": data.get(\"\
+          reply_text\") or data.get(\"message\", \"入库完成\"),\n    }\n"
+        code_language: python3
+        desc: 将入库 API 的 reply_text 转为对话回复
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 入库结果格式化
+        type: code
+        variables:
+        - value_selector:
+          - '1778937010492'
+          - body
+          variable: http_body
+      height: 53
+      id: '1779020888001'
+      position:
+        x: 1207.2524072331842
+        y: 173.97652822560946
+      positionAbsolute:
+        x: 1207.2524072331842
+        y: 173.97652822560946
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        answer: '{{#1779020888001.result#}}'
         selected: false
         title: 直接回复 2
         type: answer

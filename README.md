@@ -20,6 +20,8 @@
 
 ### 🎬 1. 票据识别
 
+<img src="docs/pics/ticket_recognition.png" width="720" alt="票据识别：上传图片后结构化入库" />
+
 **票据样例**
 
 | 电子票截图 | 纸质票 |
@@ -31,10 +33,14 @@
 
 ### 🔍 2. 数据查询
 
+<img src="docs/pics/sql_movie_search.png" width="720" alt="数据查询：自然语言转 SQL 查询票夹" />
+
 - 票夹记录持久化在本地数据库中。
 - 构建了具有SQL查询工具的智能体，能够根据用户查询要求，生成对应的SQL语句查询。
 
 ### 📊 3. 报表生成
+
+<img src="docs/pics/ai_report_chart.png" width="720" alt="报表生成：Agent 查询数据并输出图表" />
 
 - 检测到用户报表生成的消息后，Agent会先调用SQL查询工具获取所需要的数据。
 - 基于查询结果，Agent使用图表生成工具生成可视化图表，目前支持柱状图、面积图、折线图等25种图表的生成。

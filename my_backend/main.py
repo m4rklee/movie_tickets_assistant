@@ -158,6 +158,70 @@ def normalize_int(value: Any) -> int | None:
 
     return None
 
+
+FIELD_LABELS: list[tuple[str, str]] = [
+    ("movie_name", "电影名称"),
+    ("ticket_date", "观看日期"),
+    ("start_time", "开始时间"),
+    ("end_time", "结束时间"),
+    ("movie_duration", "影片时长(分钟)"),
+    ("price", "票价"),
+    ("cinema_name", "影院"),
+    ("cinema_address", "影院地址"),
+    ("cinema_hall", "影厅"),
+    ("seat_row", "座位排"),
+    ("seat_col", "座位号"),
+]
+
+
+def _display_value(value: Any) -> str | None:
+    if value is None:
+        return None
+    if isinstance(value, str) and not value.strip():
+        return None
+    if isinstance(value, (int, float)) and value == "":
+        return None
+    return str(value).strip()
+
+
+def format_ticket_markdown(ticket: dict[str, Any], index: int | None = None) -> str:
+    title = f"### 票据 {index}\n\n" if index is not None else "### 已录入票据\n\n"
+    rows = ["| 字段 | 内容 |", "| --- | --- |"]
+    seat_row = ticket.get("seat_row")
+    seat_col = ticket.get("seat_col")
+    seat_parts: list[str] = []
+    if seat_row is not None and str(seat_row).strip() != "":
+        seat_parts.append(f"{seat_row}排")
+    if seat_col is not None and str(seat_col).strip() != "":
+        seat_parts.append(f"{seat_col}座")
+    seat_combined = "".join(seat_parts) if seat_parts else None
+
+    for key, label in FIELD_LABELS:
+        if key in ("seat_row", "seat_col"):
+            continue
+        value = _display_value(ticket.get(key))
+        if value is not None:
+            rows.append(f"| {label} | {value} |")
+
+    if seat_combined:
+        rows.append(f"| 座位 | {seat_combined} |")
+
+    if len(rows) == 2:
+        rows.append("| 提示 | 未解析到可展示字段 |")
+
+    return title + "\n".join(rows) + "\n"
+
+
+def build_reply_text(tickets: list[dict[str, Any]]) -> str:
+    header = f"✅ 已成功保存 **{len(tickets)}** 条电影票信息\n\n"
+    if len(tickets) == 1:
+        return header + format_ticket_markdown(tickets[0])
+    parts = [header]
+    for i, ticket in enumerate(tickets, start=1):
+        parts.append(format_ticket_markdown(ticket, index=i))
+    return "\n".join(parts)
+
+
 @app.get("/")
 def health_check():
     return {
@@ -177,7 +241,7 @@ async def save_movie_tickets(request: Request):
     try:
         data = json.loads(body_text)
     except json.JSONDecodeError as e:
-        raise HTTPException(status_code=400, detail="请求体不是合法 JSON: {str(e)}")
+        raise HTTPException(status_code=400, detail=f"请求体不是合法 JSON: {str(e)}")
 
     try:
         tickets = parse_tickets_from_request_data(data)
@@ -241,10 +305,13 @@ async def save_movie_tickets(request: Request):
             status_code=500,
             detail=f"数据库写入失败: {repr(e)}"
         )
+    reply_text = build_reply_text(tickets)
     return {
         "success": True,
         "saved_count": len(tickets),
-        "message": f"成功保存 {len(tickets)} 条电影票信息"
+        "message": f"成功保存 {len(tickets)} 条电影票信息",
+        "tickets": tickets,
+        "reply_text": reply_text,
     }
 
 @app.post("/debug")

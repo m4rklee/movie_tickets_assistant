@@ -43,6 +43,12 @@ workflow:
         single_chunk_attachment_limit: 10
         video_file_size_limit: 100
         workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
       number_limits: 3
     opening_statement: ''
     retriever_resource:
@@ -77,10 +83,23 @@ workflow:
         isInIteration: false
         isInLoop: false
         sourceType: http-request
-        targetType: answer
-      id: 1778937010492-source-1778939764701-target
+        targetType: code
+      id: 1778937010492-source-1779020888001-target
       selected: false
       source: '1778937010492'
+      sourceHandle: source
+      target: '1779020888001'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: answer
+      id: 1779020888001-source-1778939764701-target
+      selected: false
+      source: '1779020888001'
       sourceHandle: source
       target: '1778939764701'
       targetHandle: target
@@ -208,17 +227,6 @@ workflow:
         context:
           enabled: false
           variable_selector: []
-        memory:
-          query_prompt_template: '{{#sys.query#}}
-
-
-            {{#sys.files#}}'
-          role_prefix:
-            assistant: ''
-            user: ''
-          window:
-            enabled: false
-            size: 50
         model:
           completion_params:
             temperature: 0.7
@@ -242,27 +250,24 @@ workflow:
 
             数据库中的字段：{{#1779019980472.output#}}，输出截图中所有存在的字段信息。
 
-            ## 字段格式要求
-
-            - cinema_name 输出影院名称，不要和详细地址混用。
-            - cinema_address 输出影院地址；无法识别详细地址时输出 null。
-            - price 输出数字，不要带“元”。
-            - ticket_date 使用 YYYY-MM-DD 格式。
-            - start_time、end_time 使用 HH:MM 格式。
-
             '
         selected: false
         title: LLM
         type: llm
         vision:
+          configs:
+            detail: high
+            variable_selector:
+            - sys
+            - files
           enabled: true
       height: 88
       id: llm
       position:
-        x: 555.3798331188714
+        x: 796.4962272077669
         y: 173.97652822560946
       positionAbsolute:
-        x: 555.3798331188714
+        x: 796.4962272077669
         y: 173.97652822560946
       selected: false
       sourcePosition: right
@@ -300,10 +305,10 @@ workflow:
       height: 137
       id: '1778937010492'
       position:
-        x: 854.8353277173338
+        x: 1065.6014064663684
         y: 173.97652822560946
       positionAbsolute:
-        x: 854.8353277173338
+        x: 1065.6014064663684
         y: 173.97652822560946
       selected: false
       sourcePosition: right
@@ -311,7 +316,39 @@ workflow:
       type: custom
       width: 242
     - data:
-        answer: '{{#1778937010492.body#}}'
+        code: "import json\n\n\ndef main(http_body: str) -> dict:\n    if isinstance(http_body,\
+          \ dict):\n        data = http_body\n    else:\n        data = json.loads((http_body\
+          \ or \"\").strip() or \"{}\")\n    return {\n        \"result\": data.get(\"\
+          reply_text\") or data.get(\"message\", \"入库完成\"),\n    }\n"
+        code_language: python3
+        desc: 将入库 API 的 reply_text 转为对话回复
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 入库结果格式化
+        type: code
+        variables:
+        - value_selector:
+          - '1778937010492'
+          - body
+          variable: http_body
+      height: 53
+      id: '1779020888001'
+      position:
+        x: 1207.2524072331842
+        y: 173.97652822560946
+      positionAbsolute:
+        x: 1207.2524072331842
+        y: 173.97652822560946
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        answer: '{{#1779020888001.result#}}'
         selected: false
         title: 直接回复 2
         type: answer
@@ -319,10 +356,10 @@ workflow:
       height: 103
       id: '1778939764701'
       position:
-        x: 1146.5682953081084
+        x: 1348.9037309071814
         y: 173.97652822560946
       positionAbsolute:
-        x: 1146.5682953081084
+        x: 1348.9037309071814
         y: 173.97652822560946
       selected: false
       sourcePosition: right
@@ -431,11 +468,29 @@ workflow:
         agent_parameters:
           instruction:
             type: constant
-            value: '你是数据库分析助手，如果用户的要求只涉及数据库查询，请调用数据库工具查询，
+            value: '你是数据库分析助手，需要协助用户完成涉及到数据库的相关任务。
+
+
+              ## 任务一：数据库查询
+
+              如果用户的要求只涉及数据库查询，请调用数据库工具查询，别名应该避免使用MySQL中的特殊关键字。
 
               数据库结构：{{#1778941084946.output#}}
 
-              如果用户的要求涉及到“可视化报表、图表、柱状图、饼图、趋势图”等时，先调用工具查询数据库，得到数据，再调用 AntV 可视化工具生成图表，不能只用文字描述。'
+              当用户进行电影名相关的查询时，如果查询不到，请使用模糊查询。
+
+
+              ## 任务二：可视化分析
+
+              如果用户的要求涉及到“可视化报表、图表、柱状图、饼图、趋势图”等时，先调用工具查询数据库，得到数据，再调用 AntV 可视化工具生成图表，不能只用文字描述。
+
+
+              ## 要求
+
+              最终返回结果需要严格依据数据库查询结果，应该避免为用户提供编造的信息'
+          maximum_iterations:
+            type: constant
+            value: 5
           model:
             type: constant
             value:
@@ -469,7 +524,7 @@ workflow:
                   auto: 0
                   value:
                     type: mixed
-                    value: your_password
+                    value: xiaopang123,.
                 db_port:
                   auto: 0
                   value:
@@ -1405,7 +1460,7 @@ workflow:
       positionAbsolute:
         x: 854.8353277173338
         y: 358.002629683327
-      selected: false
+      selected: true
       sourcePosition: right
       targetPosition: left
       type: custom
@@ -1419,10 +1474,10 @@ workflow:
       height: 103
       id: '1778940686868'
       position:
-        x: 1146.5682953081084
+        x: 1348.9037309071814
         y: 358.002629683327
       positionAbsolute:
-        x: 1146.5682953081084
+        x: 1348.9037309071814
         y: 358.002629683327
       selected: false
       sourcePosition: right
@@ -1450,9 +1505,9 @@ workflow:
 
           - ticket_date：票面日期时间，DATETIME
 
-          - start_time：电影开始时间，TIME，格式 HH:MM
+          - start_time：电影开始时间，TIME
 
-          - end_time：电影结束时间，TIME，格式 HH:MM
+          - end_time：电影结束时间，TIME
 
           - movie_duration：电影时长，单位分钟，整数
 
@@ -1492,10 +1547,10 @@ workflow:
       height: 52
       id: '1778941084946'
       position:
-        x: 555.3798331188714
+        x: 562.1243476388405
         y: 358.002629683327
       positionAbsolute:
-        x: 555.3798331188714
+        x: 562.1243476388405
         y: 358.002629683327
       selected: false
       sourcePosition: right
@@ -1503,7 +1558,7 @@ workflow:
       type: custom
       width: 242
     - data:
-        selected: true
+        selected: false
         template: '当前数据库名：my_movie_tickets
 
 
@@ -1523,9 +1578,9 @@ workflow:
 
           - ticket_date：票面日期时间，DATETIME
 
-          - start_time：电影开始时间，TIME，格式 HH:MM
+          - start_time：电影开始时间，TIME
 
-          - end_time：电影结束时间，TIME，格式 HH:MM
+          - end_time：电影结束时间，TIME
 
           - movie_duration：电影时长，单位分钟，整数
 
@@ -1546,18 +1601,18 @@ workflow:
       height: 52
       id: '1779019980472'
       position:
-        x: 469.3872729892653
-        y: -2.1262825433486228
+        x: 514.9127459990568
+        y: 173.97652822560946
       positionAbsolute:
-        x: 469.3872729892653
-        y: -2.1262825433486228
-      selected: true
+        x: 514.9127459990568
+        y: 173.97652822560946
+      selected: false
       sourcePosition: right
       targetPosition: left
       type: custom
       width: 242
     viewport:
-      x: 46.73748748402727
-      y: 375.6344069490102
-      zoom: 0.5930745627660571
+      x: -199.8131431288706
+      y: 388.4677973047485
+      zoom: 0.5666859496152592
   rag_pipeline_variables: []
