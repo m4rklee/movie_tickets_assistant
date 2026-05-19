@@ -10,6 +10,7 @@ eval_pics/
 *.jpeg
 *.jpg
 *.png
+!docs/pics/**
 !eval/reports/**/*.png
 
 # Local / scratch
