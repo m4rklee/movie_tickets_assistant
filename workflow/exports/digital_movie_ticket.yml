@@ -82,32 +82,6 @@ workflow:
     - data:
         isInIteration: false
         isInLoop: false
-        sourceType: http-request
-        targetType: code
-      id: 1778937010492-source-1779020888001-target
-      selected: false
-      source: '1778937010492'
-      sourceHandle: source
-      target: '1779020888001'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInIteration: false
-        isInLoop: false
-        sourceType: code
-        targetType: answer
-      id: 1779020888001-source-1778939764701-target
-      selected: false
-      source: '1779020888001'
-      sourceHandle: source
-      target: '1778939764701'
-      targetHandle: target
-      type: custom
-      zIndex: 0
-    - data:
-        isInIteration: false
-        isInLoop: false
         sourceType: start
         targetType: question-classifier
       id: 1778933529373-source-1778940247773-target
@@ -204,6 +178,29 @@ workflow:
       targetHandle: target
       type: custom
       zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: http-request
+        targetType: code
+      id: 1778937010492-source-1779154346808-target
+      source: '1778937010492'
+      sourceHandle: source
+      target: '1779154346808'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: answer
+      id: 1779154346808-source-1778939764701-target
+      source: '1779154346808'
+      sourceHandle: source
+      target: '1778939764701'
+      targetHandle: target
+      type: custom
+      zIndex: 0
     nodes:
     - data:
         selected: false
@@ -231,7 +228,7 @@ workflow:
           completion_params:
             temperature: 0.7
           mode: chat
-          name: qwen3.6-flash
+          name: qwen3-vl-plus
           provider: langgenius/tongyi/tongyi
         prompt_template:
         - id: f38f19db-76bf-4139-9fb9-306d538b89e3
@@ -252,7 +249,7 @@ workflow:
 
             '
         selected: false
-        title: LLM
+        title: 票据识别大模型
         type: llm
         vision:
           configs:
@@ -264,10 +261,10 @@ workflow:
       height: 88
       id: llm
       position:
-        x: 796.4962272077669
+        x: 833.5537897152855
         y: 173.97652822560946
       positionAbsolute:
-        x: 796.4962272077669
+        x: 833.5537897152855
         y: 173.97652822560946
       selected: false
       sourcePosition: right
@@ -305,10 +302,10 @@ workflow:
       height: 137
       id: '1778937010492'
       position:
-        x: 1065.6014064663684
+        x: 1102.6589689738869
         y: 173.97652822560946
       positionAbsolute:
-        x: 1065.6014064663684
+        x: 1102.6589689738869
         y: 173.97652822560946
       selected: false
       sourcePosition: right
@@ -316,50 +313,18 @@ workflow:
       type: custom
       width: 242
     - data:
-        code: "import json\n\n\ndef main(http_body: str) -> dict:\n    if isinstance(http_body,\
-          \ dict):\n        data = http_body\n    else:\n        data = json.loads((http_body\
-          \ or \"\").strip() or \"{}\")\n    return {\n        \"result\": data.get(\"\
-          reply_text\") or data.get(\"message\", \"入库完成\"),\n    }\n"
-        code_language: python3
-        desc: 将入库 API 的 reply_text 转为对话回复
-        outputs:
-          result:
-            children: null
-            type: string
+        answer: '{{#1779154346808.result#}}'
         selected: false
-        title: 入库结果格式化
-        type: code
-        variables:
-        - value_selector:
-          - '1778937010492'
-          - body
-          variable: http_body
-      height: 53
-      id: '1779020888001'
-      position:
-        x: 1207.2524072331842
-        y: 173.97652822560946
-      positionAbsolute:
-        x: 1207.2524072331842
-        y: 173.97652822560946
-      selected: false
-      sourcePosition: right
-      targetPosition: left
-      type: custom
-      width: 242
-    - data:
-        answer: '{{#1779020888001.result#}}'
-        selected: false
-        title: 直接回复 2
+        title: 数据入库回复
         type: answer
         variables: []
       height: 103
       id: '1778939764701'
       position:
-        x: 1348.9037309071814
+        x: 1699.146997341864
         y: 173.97652822560946
       positionAbsolute:
-        x: 1348.9037309071814
+        x: 1699.146997341864
         y: 173.97652822560946
       selected: false
       sourcePosition: right
@@ -379,7 +344,7 @@ workflow:
           completion_params:
             temperature: 0.7
           mode: chat
-          name: qwen3.6-flash
+          name: qwen3-4b
           provider: langgenius/tongyi/tongyi
         query_variable_selector:
         - '1778933529373'
@@ -428,17 +393,17 @@ workflow:
           role: system
           text: 你是一个友善的用户助手，和用户闲聊。
         selected: false
-        title: LLM 2
+        title: 闲聊大模型
         type: llm
         vision:
           enabled: false
       height: 88
       id: '1778940323005'
       position:
-        x: 555.3798331188714
+        x: 592.5571626814767
         y: 627.9454723231834
       positionAbsolute:
-        x: 555.3798331188714
+        x: 592.5571626814767
         y: 627.9454723231834
       selected: false
       sourcePosition: right
@@ -448,16 +413,16 @@ workflow:
     - data:
         answer: '{{#1778940323005.text#}}'
         selected: false
-        title: 直接回复 2
+        title: 闲聊回复
         type: answer
         variables: []
       height: 103
       id: '1778940327379'
       position:
-        x: 1146.5682953081084
+        x: 1421.254210088527
         y: 627.9454723231834
       positionAbsolute:
-        x: 1146.5682953081084
+        x: 1421.254210088527
         y: 627.9454723231834
       selected: false
       sourcePosition: right
@@ -487,16 +452,17 @@ workflow:
 
               ## 要求
 
-              最终返回结果需要严格依据数据库查询结果，应该避免为用户提供编造的信息'
+              最终返回结果需要依据数据库查询结果，应该避免为用户提供编造的信息'
           maximum_iterations:
             type: constant
             value: 5
           model:
             type: constant
             value:
-              completion_params: {}
+              completion_params:
+                enable_thinking: false
               mode: chat
-              model: qwen3.6-flash
+              model: qwen3-30b-a3b
               model_type: llm
               provider: langgenius/tongyi/tongyi
               type: model-selector
@@ -1441,24 +1407,24 @@ workflow:
 
             {{#sys.files#}}'
           window:
-            enabled: false
-            size: 50
+            enabled: true
+            size: 10
         meta:
           minimum_dify_version: 1.7.0
           version: 0.0.2
         output_schema: {}
         plugin_unique_identifier: langgenius/agent:0.0.37@a5dcc6ea00bca23439b49ff7d65704f3f5dd6ce2ca353205e62278e2148d84b6
-        selected: false
+        selected: true
         title: Agent
         tool_node_version: '2'
         type: agent
       height: 232
       id: '1778940354934'
       position:
-        x: 854.8353277173338
+        x: 1102.6589689738869
         y: 358.002629683327
       positionAbsolute:
-        x: 854.8353277173338
+        x: 1102.6589689738869
         y: 358.002629683327
       selected: true
       sourcePosition: right
@@ -1466,18 +1432,18 @@ workflow:
       type: custom
       width: 242
     - data:
-        answer: '{{#1778940354934.text#}}'
+        answer: '{{#1778940354934.text#}}{{#1778940354934.files#}}'
         selected: false
-        title: 直接回复 3
+        title: 数据筛选回复
         type: answer
         variables: []
       height: 103
       id: '1778940686868'
       position:
-        x: 1348.9037309071814
+        x: 1421.254210088527
         y: 358.002629683327
       positionAbsolute:
-        x: 1348.9037309071814
+        x: 1421.254210088527
         y: 358.002629683327
       selected: false
       sourcePosition: right
@@ -1513,11 +1479,15 @@ workflow:
 
           - price：票价，DECIMAL
 
-          - cinema_name：影院名称，字符串
+          - cinema_name: 影院名称，字符串
 
           - cinema_address：影院地址，字符串
 
           - cinema_hall：影厅，字符串
+
+          - seat_row：座位排号，整数
+
+          - seat_col：座位座号，整数
 
           - raw_text：大模型原始识别结果，TEXT
 
@@ -1526,31 +1496,27 @@ workflow:
 
           查询规则：
 
-          1. 只能查询 movie_tickets 表。
+          1. 查询 movie_tickets 表。
 
-          2. 禁止查询 users 表。
+          2. 禁止使用 INSERT、UPDATE、DELETE、DROP、ALTER、CREATE。
 
-          3. 禁止使用 INSERT、UPDATE、DELETE、DROP、ALTER、CREATE。
+          3. 只允许生成 SELECT 查询。
 
-          4. 只允许生成 SELECT 查询。
+          4. 如果用户问“最贵的电影”，使用 price 字段排序。
 
-          5. 查询结果默认限制 LIMIT 20。
+          5. 如果查询结果是单部电影，请将数据库中该电影所有非空字段的信息一并返回
 
-          6. 如果用户问“最贵的电影”，使用 price 字段排序。
-
-          7. 如果用户问“最长的电影”，使用 movie_duration 字段排序。
-
-          8. 如果用户问“最近看的电影”，使用 start_time 字段排序。'
-        title: 模板转换
+          '
+        title: 数据库字段说明
         type: template-transform
         variables: []
       height: 52
       id: '1778941084946'
       position:
-        x: 562.1243476388405
+        x: 592.5571626814767
         y: 358.002629683327
       positionAbsolute:
-        x: 562.1243476388405
+        x: 592.5571626814767
         y: 358.002629683327
       selected: false
       sourcePosition: right
@@ -1560,10 +1526,6 @@ workflow:
     - data:
         selected: false
         template: '当前数据库名：my_movie_tickets
-
-
-          当前只允许查询以下数据表：
-
 
           表名：movie_tickets
 
@@ -1586,25 +1548,61 @@ workflow:
 
           - price：票价，DECIMAL
 
-          - cinema_name：影院名称，字符串
+          - cinema_name: 影院名称，字符串
 
           - cinema_address：影院地址，字符串
 
           - cinema_hall：影厅，字符串
 
+          - seat_row：座位排号，整数
+
+          - seat_col：座位座号，整数
+
           - raw_text：大模型原始识别结果，TEXT
 
           - created_at：记录入库时间，TIMESTAMP'
-        title: 模板转换 2
+        title: 数据库字段说明
         type: template-transform
         variables: []
       height: 52
       id: '1779019980472'
       position:
-        x: 514.9127459990568
+        x: 592.5571626814767
         y: 173.97652822560946
       positionAbsolute:
-        x: 514.9127459990568
+        x: 592.5571626814767
+        y: 173.97652822560946
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        code: "import json\n\ndef main(http_body: str) -> dict:\n    if isinstance(http_body,\
+          \ dict):\n        data = http_body\n    else:\n        data = json.loads((http_body\
+          \ or \"\").strip() or \"{}\")\n    return {\n        \"result\": data.get(\"\
+          reply_text\") or data.get(\"message\", \"入库完成\"),\n    }"
+        code_language: python3
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 后处理
+        type: code
+        variables:
+        - value_selector:
+          - '1778937010492'
+          - body
+          value_type: string
+          variable: http_body
+      height: 52
+      id: '1779154346808'
+      position:
+        x: 1421.254210088527
+        y: 173.97652822560946
+      positionAbsolute:
+        x: 1421.254210088527
         y: 173.97652822560946
       selected: false
       sourcePosition: right
@@ -1612,7 +1610,7 @@ workflow:
       type: custom
       width: 242
     viewport:
-      x: -199.8131431288706
-      y: 388.4677973047485
-      zoom: 0.5666859496152592
+      x: -113.61708034078686
+      y: 141.1668697584356
+      zoom: 0.5037914131696078
   rag_pipeline_variables: []
