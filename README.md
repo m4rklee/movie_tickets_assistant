@@ -40,6 +40,8 @@
 
 ### 📊 3. 报表生成
 
+<img src="docs/pics/ai_report.png" width="720" alt="报表生成：对话与查询过程" />
+
 <img src="docs/pics/ai_report_chart.png" width="720" alt="报表生成：Agent 查询数据并输出图表" />
 
 - 检测到用户报表生成的消息后，Agent会先调用SQL查询工具获取所需要的数据。
